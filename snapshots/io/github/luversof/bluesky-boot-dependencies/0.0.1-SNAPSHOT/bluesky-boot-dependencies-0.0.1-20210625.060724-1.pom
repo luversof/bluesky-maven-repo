@@ -1,0 +1,346 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>bluesky-boot-dependencies</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>io.github.luversof</groupId>
+		<artifactId>bluesky-boot-build</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<java.version>11</java.version>
+		<spring-boot.version>2.5.2</spring-boot.version>
+		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<bluesky-boot.version>0.0.1-SNAPSHOT</bluesky-boot.version>
+		<!-- tag:asciidoctor-properties[] -->
+		<download-maven-plugin.version>1.6.3</download-maven-plugin.version>
+		<asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
+		<spring-doc-resources.version>0.2.5</spring-doc-resources.version>
+		<spring-asciidoctor-extensions.version>0.6.0</spring-asciidoctor-extensions.version>
+		<refdocs.build.directory>${project.build.directory}/refdocs/</refdocs.build.directory>
+		<asciidocs.output.directory>${project.build.directory}/generated-docs</asciidocs.output.directory>
+		<!-- end:asciidoctor-properties[] -->
+		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+		<jib-maven-plugin.version>3.1.1</jib-maven-plugin.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<!-- (s) devCheck 기능 관련 -->
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>0.9.12</version>
+			</dependency>
+			<!-- (e) devCheck 기능 관련 -->
+
+			<!-- (s) bluesky boot -->
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-autoconfigure</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-batch</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-data-jpa</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-data-mongodb-reactive</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-data-rest</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-jdbc</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-mybatis</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-starter-test</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-docs</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.luversof</groupId>
+				<artifactId>bluesky-boot-test-autoconfigure</artifactId>
+				<version>${bluesky-boot.version}</version>
+			</dependency>
+			<!-- (e) bluesky boot -->
+
+			<!-- (s) spring cloud -->
+			<!-- 버전관리를 편하게 하려고 cloud 의존성을 여기서 관리하고 있으나 분리하는 것이 좋다. -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- (e) spring cloud -->
+
+
+			<!-- (s) mybatis -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>2.2.0</version>
+			</dependency>
+			<!-- (e) mybatis -->
+
+			<!-- (s) boot-admin -->
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-starter-server</artifactId>
+				<version>2.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-starter-client</artifactId>
+				<version>2.4.1</version>
+			</dependency>
+			<!-- (e) boot-admin -->
+
+			<!-- (s) thymeleaf-layout-dialect -->
+			<dependency>
+				<groupId>com.github.zhanhb</groupId>
+				<artifactId>thymeleaf-layout-dialect</artifactId>
+				<version>2.5.3</version>
+			</dependency>
+			<!-- (e) thymeleaf-layout-dialect -->
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<!-- (s) sonarqube plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugin</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+					<configuration>
+						<includes>
+							<include>**/*Test.java</include>
+							<include>**/*Tests.java</include>
+						</includes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>prepare-agent</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- (e) sonarqube plugin -->
+
+				<!-- (s) asciidoctor plugin -->
+				<plugin>
+					<groupId>com.googlecode.maven-download-plugin</groupId>
+					<artifactId>download-maven-plugin</artifactId>
+					<version>${download-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>unpack-doc-resources</id>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>wget</goal>
+							</goals>
+							<configuration>
+								<url>https://repo.spring.io/release/io/spring/docresources/spring-doc-resources/${spring-doc-resources.version}/spring-doc-resources-${spring-doc-resources.version}.zip</url>
+								<unpack>true</unpack>
+								<outputDirectory>${refdocs.build.directory}</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copy-asciidoc-resources</id>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${refdocs.build.directory}</outputDirectory>
+								<resources>
+									<resource>
+										<directory>src/main/asciidoc</directory>
+										<filtering>false</filtering>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.asciidoctor</groupId>
+					<artifactId>asciidoctor-maven-plugin</artifactId>
+					<version>${asciidoctor-maven-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.springframework.restdocs</groupId>
+							<artifactId>spring-restdocs-asciidoctor</artifactId>
+							<version>${spring-restdocs.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>io.spring.asciidoctor</groupId>
+							<artifactId>spring-asciidoctor-extensions-spring-boot</artifactId>
+							<version>${spring-asciidoctor-extensions.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>io.spring.asciidoctor</groupId>
+							<artifactId>spring-asciidoctor-extensions-block-switch</artifactId>
+							<version>${spring-asciidoctor-extensions.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>io.spring.asciidoctor</groupId>
+							<artifactId>spring-asciidoctor-extensions-section-ids</artifactId>
+							<version>${spring-asciidoctor-extensions.version}</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<sourceDirectory>${refdocs.build.directory}</sourceDirectory>
+					</configuration>
+					<executions>
+						<execution>
+							<id>generate-html-documentation</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>process-asciidoc</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${asciidocs.output.directory}</outputDirectory>
+								<preserveDirectories>true</preserveDirectories>
+								<backend>html5</backend>
+								<doctype>book</doctype>
+								<attributes>
+									// these attributes are required to use the doc resources
+									<docinfo>shared</docinfo>
+									<stylesdir>	css/</stylesdir>
+									<stylesheet>spring.css</stylesheet>
+									<linkcss>true</linkcss>
+									<icons>font</icons>
+									<highlightjsdir>js/highlight</highlightjsdir>
+									<highlightjs-theme>github</highlightjs-theme>
+									<source-highlighter>highlight.js</source-highlighter>
+								</attributes>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- (e) asciidoctor plugin -->
+				<plugin>
+					<groupId>com.google.cloud.tools</groupId>
+					<artifactId>jib-maven-plugin</artifactId>
+					<version>${jib-maven-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>sonarqube</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugin</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>asciidoctor</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.googlecode.maven-download-plugin</groupId>
+						<artifactId>download-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctor-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
